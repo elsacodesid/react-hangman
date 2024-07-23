@@ -8,10 +8,11 @@ const KEYS = [
 type KeyboardProps = {
   activeLetters: string[]
   inactiveLetters: string[]
-  addGuessedLetter: (letter: string) => void
+  addGuessedLetter: (letter: string) => void,
+  disabled: boolean
 }
 
-function Keyboard({activeLetters, inactiveLetters, addGuessedLetter}: KeyboardProps) {
+function Keyboard({activeLetters, inactiveLetters, addGuessedLetter, disabled=false}: KeyboardProps) {
   return (
     <div
       style={{
@@ -25,9 +26,9 @@ function Keyboard({activeLetters, inactiveLetters, addGuessedLetter}: KeyboardPr
         const isInactive = inactiveLetters.includes(key)
         return (
           <button
-            onClick={() => addGuessedLetter(key)}
+            onClick={() => addGuessedLetter(key.toLowerCase())}
             className={`btn ${isActive ? "active" : ""} ${isInactive ? "inactive" : ""}`}
-            disabled={isActive || isInactive}
+            disabled={isActive || isInactive || disabled}
             key={key}
           >
             {key}
