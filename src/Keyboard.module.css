@@ -11,3 +11,7 @@
     color: white;
 
 }
+
+.btn.inactive {
+opacity: .3
+}
